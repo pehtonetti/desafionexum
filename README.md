@@ -3,7 +3,7 @@
 Este projeto é a solução para o desafio de desenvolvimento FullStack Júnior da Nexum Tecnologia.
 É uma Single Page Application (SPA) para o **Cadastro e Gestão de Pessoas** que implementa todas as operações CRUD.
 
-**Desenvolvido por:** [Seu Nome Completo]
+**Desenvolvido por:** Pedro Tonetti
 
 ## ✨ Visão Geral da Solução
 
@@ -36,6 +36,7 @@ Para rodar a aplicação, é necessário iniciar o Backend e o Frontend separada
 * **Maven** (Gerenciador de dependências do Backend)
 * **Node.js** e **npm/Yarn** (para o Frontend)
 * **MySQL** (Servidor de Banco de Dados)
+* **XAMP** (Para rodar Localmente)
 
 ### 1. Configuração do Banco de Dados
 
@@ -47,7 +48,7 @@ Para rodar a aplicação, é necessário iniciar o Backend e o Frontend separada
       datasource:
         url: jdbc:mysql://localhost:3306/desafio...
         username: root  # Seu usuário
-        password:      # Sua senha
+        password:      # Sua senha //Nesse Projeto, nao utilizamos senha pois estamos apenas testando o cadastro efetivo do crud.
       # ...
     ```
 
