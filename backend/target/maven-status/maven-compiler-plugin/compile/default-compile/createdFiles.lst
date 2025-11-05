@@ -1,0 +1,8 @@
+com\nexum\desafio\model\Endereco.class
+com\nexum\desafio\service\CepService.class
+com\nexum\desafio\controller\PessoaController.class
+com\nexum\desafio\repository\PessoaRepository.class
+com\nexum\desafio\model\Pessoa.class
+com\nexum\desafio\service\PessoaService.class
+com\nexum\desafio\service\CepService$EnderecoResponse.class
+com\nexum\desafio\DesafioApplication.class

@@ -1,0 +1,33 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+
+# Arquivos de Sistema Operacional
+.DS_Store
+Thumbs.db
+
+# Configurações de IDEs (IntelliJ, VS Code, etc.)
+.idea/
+.vscode/
+*.iml
+
+# --------------------------
+# 🐍 BACKEND (Spring Boot / Maven)
+# --------------------------
+/backend/target/
+/backend/pom.xml.tag
+/backend/pom.xml.versionsBackup
+/backend/*.log
+/backend/bin/
+
+# --------------------------
+# 🖥️ FRONTEND (Vue / Node)
+# --------------------------
+/frontend/node_modules
+/frontend/dist
+/frontend/npm-debug.log*
+/frontend/yarn-error.log*
+/frontend/.vite
+/frontend/.temp
