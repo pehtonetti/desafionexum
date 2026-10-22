@@ -1,98 +1,81 @@
-# 🚀 Desafio FullStack Nexum - Cadastro de Pessoas
+# Cadastro de Pessoas · Desafio Full-Stack Nexum
 
-Este projeto é a solução para o desafio de desenvolvimento FullStack Júnior da Nexum Tecnologia.
-É uma Single Page Application (SPA) para o **Cadastro e Gestão de Pessoas** que implementa todas as operações CRUD.
+SPA para **cadastro e gestão de pessoas** com CRUD completo, busca por múltiplos campos e preenchimento automático de endereço via ViaCEP. Desenvolvida como solução do desafio técnico Full-Stack Júnior da Nexum Tecnologia.
 
-**Desenvolvido por:** Pedro Tonetti | Pehtty Tecnologias
+![Vue.js](https://img.shields.io/badge/Vue.js-3-4FC08D?logo=vuedotjs&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3-6DB33F?logo=springboot&logoColor=white)
+![Java](https://img.shields.io/badge/Java-17-ED8B00?logo=openjdk&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white)
 
-## ✨ Visão Geral da Solução
+## Funcionalidades
 
-O projeto é dividido em dois módulos principais: um Backend (API) em Java com Spring Boot e um Frontend (SPA) em Vue.js 3.
+- **CRUD completo** de pessoas e endereços
+- **ViaCEP:** endereço preenchido automaticamente ao sair do campo de CEP
+- **Busca** por nome, CPF, cidade, CEP ou estado (nome ou sigla, ex.: `SP`)
+- **Validações** de CPF (11 dígitos) e de campos obrigatórios (`@NotBlank`)
+- **Modal reutilizável** para cadastro e edição
 
-### Funcionalidades Chave
+## Arquitetura
 
-* **CRUD Completo:** Criação, Listagem, Edição e Exclusão de registros de Pessoas.
-* **Integração ViaCEP:** Preenchimento automático de endereço ao informar o CEP (no modal de cadastro/edição).
-* **Busca Avançada:** Permite pesquisar pessoas por **Nome, CPF, Cidade, CEP, ou Estado (por nome ou sigla, ex: 'SP')**.
-* **Validação de Dados:** Validação de CPF (lógica de 11 dígitos), validações `@NotBlank` e campos de endereço obrigatórios.
-* **Layout Profissional:** Uso do logo da Nexum na tela inicial e na listagem para identidade visual.
+```text
+desafionexum/
+├── backend/    # API REST · Spring Boot, Spring Web, Spring Data JPA
+└── frontend/   # SPA · Vue 3, Vue Router, Axios, Bootstrap
+```
 
-## 🛠️ Stack Tecnológica
+| Arquivo | Responsabilidade |
+| :-- | :-- |
+| `PessoaRepository.java` | Query methods JPA para a busca por vários campos |
+| `PessoaService.java` | Regras de negócio, validação de CPF e integração com o `CepService` |
+| `PessoaModal.vue` | Formulário de cadastro/edição; consulta o CEP no `@blur` |
+| `PessoasView.vue` | Listagem com campo de busca |
 
-| Camada | Tecnologia | Detalhes |
-| :--- | :--- | :--- |
-| **Backend** | **Spring Boot 3.x (Java)** | API RESTful com Spring Web e Spring Data JPA. |
-| **Frontend** | **Vue 3 + Vite** | SPA moderna, utilizando Composition API (se aplicável). |
-| **Banco de Dados** | **MySQL** | Persistência dos dados de Pessoa e Endereço. |
-| **Utilitários** | ViaCEP API | Serviço externo para busca de endereço. |
+## Como rodar localmente
 
-## ⚙️ Como Executar o Projeto Localmente
+**Pré-requisitos:** Java 17+, Maven, Node.js 18+ e MySQL.
 
-Para rodar a aplicação, é necessário iniciar o Backend e o Frontend separadamente.
+### 1. Banco de dados
 
-### Pré-requisitos
+Crie o banco `desafio` e ajuste usuário e senha em `backend/src/main/resources/application.yml`:
 
-* **Java 17** ou superior (para o Backend)
-* **Maven** (Gerenciador de dependências do Backend)
-* **Node.js** e **npm/Yarn** (para o Frontend)
-* **MySQL** (Servidor de Banco de Dados)
-* **XAMPP** (Para rodar Localmente)
+```yaml
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/desafio
+    username: root
+    password: sua_senha
+```
 
-### 1. Configuração do Banco de Dados
+### 2. Backend (porta 8080)
 
-1.  Crie um banco de dados MySQL chamado `desafio`.
-2.  Acesse o arquivo de configuração do Backend em: `backend/src/main/resources/application.yml`.
-3.  **Ajuste** as credenciais do `spring.datasource` (especialmente `username` e `password`) para as suas configurações locais.
-    ```yaml
-    spring:
-      datasource:
-        url: jdbc:mysql://localhost:3306/desafio...
-        username: root  # Seu usuário
-        password:      # Sua senha //Nesse Projeto, nao utilizamos senha pois estamos apenas testando o cadastro efetivo do crud.
-      # ...
-    ```
+```bash
+cd backend
+mvn spring-boot:run
+```
 
-### 2. Iniciando o Backend (API)
+API disponível em `http://localhost:8080/api/pessoas`.
 
-O Backend será executado na porta `8080`.
+### 3. Frontend (porta 5173)
 
-1.  Abra o terminal e navegue até a pasta `backend/`:
-    ```bash
-    cd backend
-    ```
-2.  Execute o Spring Boot (usando Maven):
-    ```bash
-    ./mvnw spring-boot:run
-    ```
-3.  A API estará acessível em: `http://localhost:8080/api/pessoas`.
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-### 3. Iniciando o Frontend (SPA)
+Acesse `http://localhost:5173`.
 
-O Frontend será executado na porta padrão do Vite (geralmente `5173`).
+## Endpoints
 
-1.  Abra **outro terminal** e navegue até a pasta `frontend/`:
-    ```bash
-    cd frontend
-    ```
-2.  Instale as dependências Node (se ainda não fez):
-    ```bash
-    npm install
-    # ou yarn install
-    ```
-3.  Inicie o servidor de desenvolvimento:
-    ```bash
-    npm run dev
-    # ou yarn dev
-    ```
-4.  Acesse a aplicação no seu navegador: `http://localhost:5173/`
+| Método | Rota | Descrição |
+| :-- | :-- | :-- |
+| `GET` | `/api/pessoas?q=termo` | Lista as pessoas (`q` opcional filtra por nome, CPF, cidade, CEP ou estado) |
+| `GET` | `/api/pessoas/{id}` | Busca um cadastro |
+| `POST` | `/api/pessoas` | Cria um cadastro |
+| `PUT` | `/api/pessoas/{id}` | Atualiza um cadastro |
+| `DELETE` | `/api/pessoas/{id}` | Remove um cadastro |
 
-## 🌟 Detalhes da Implementação
+## Autor
 
-| Arquivo/Classe | Responsabilidade | Destaque Técnico |
-| :--- | :--- | :--- |
-| `PessoaRepository.java` | Backend | Implementação de query methods do JPA para a busca genérica por múltiplos campos (`Nome`, `CPF`, `Cidade`, `CEP`, `Estado`). |
-| `PessoaService.java` | Backend | Contém a regra de negócio central, incluindo a **validação de CPF** e a **integração com `CepService` (ViaCEP)**. |
-| `PessoaModal.vue` | Frontend | Componente reutilizável para **Cadastro e Edição**, disparando o método de busca de CEP no evento `@blur`. |
-| `PessoasView.vue` | Frontend | Tela de listagem com o input de busca e o **Logo da Nexum posicionado** no canto superior direito. |
-
----
+**Pedro Tonetti** · [LinkedIn](https://www.linkedin.com/in/pedrotonetti/) · [Portfólio](https://pehtonetti.github.io/portifolio/)
